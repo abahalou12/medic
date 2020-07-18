@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Nouveau Patient{% endblock %}
+
+{% block body %}
+    <h1>Crée Patient</h1>
+
+    {{ include('patient/_form.html.twig') }}
+
+    <a href="{{ path('patient_index') }}">retour</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordonnance{% endblock %}
+
+{% block body %}
+    <h1>Crée Ordonnance</h1>
+
+    {{ include('ordonnance/_form.html.twig') }}
+
+    <a href="{{ path('ordonnance_index') }}">retour</a>
+{% endblock %}

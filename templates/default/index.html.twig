@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <nav class="nav justify-content-center navbar navbar-expand-lg bg-dark">
+        <a href="#" class="nav-item nav-link active">NelJoes</a>
+        <a href="{{ path('route_consultation') }}" class="nav-item nav-link ">Consultations</a>
+        <a href="{{ path('route_medecin') }}" class="nav-item nav-link">Medecin</a>
+        <a href="{{ path('route_patient') }}" class="nav-item nav-link">Patient</a>
+        <a href="{{ path('route_medicament') }}" class="nav-item nav-link " tabindex="-1">Medicament</a>
+    </nav>
+    <div class="jumbotron text-center bg-primary">
+        <h1>Bievenue !</h1>
+        <p>Cabinet Medical NelJoes</p>
+    </div>
+
+
+{% endblock %}
+

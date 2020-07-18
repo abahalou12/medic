@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Consultation{% endblock %}
+
+{% block body %}
+    <h1> Consultation</h1>
+
+    {{ include('consultation/_form.html.twig') }}
+
+    <a href="{{ path('consultation_index') }}">retour</a>
+{% endblock %}
