@@ -11,6 +11,8 @@
                 <th>Id</th>
                 <th>NumeroOrdre</th>
                 <th>DateHeure</th>
+                <th>Nom du Patient</th>
+                <th>Nom du Medecin</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +22,12 @@
                 <td>{{ ordonnance.id }}</td>
                 <td>{{ ordonnance.numeroOrdre }}</td>
                 <td>{{ ordonnance.dateHeure ? ordonnance.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    {{ordonnance.patient.nom}}
+                </td>
+                <td>
+                    {{ordonnance.medecin.nom}}
+                </td>
                 <td>
                     <a href="{{ path('ordonnance_show', {'id': ordonnance.id}) }}">voir</a>
                     <a href="{{ path('ordonnance_edit', {'id': ordonnance.id}) }}">editer</a>

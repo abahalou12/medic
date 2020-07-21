@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\ConsultationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ConsultationRepository")
+ * @ORM\Entity(repositoryClass=ConsultationRepository::class)
  */
 class Consultation
 {
@@ -19,76 +18,40 @@ class Consultation
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
-    private $dateHeure;
+    private $dateheure;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Patient", mappedBy="consultations")
-     */
-    private $Patient;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Patient", inversedBy="consultations")
+     * @ORM\ManyToOne(targetEntity=Patient::class, inversedBy="consultations")
      */
     private $patient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Medecin", inversedBy="consultations")
+     * @ORM\ManyToOne(targetEntity=Medecin::class, inversedBy="consultations")
      */
     private $medecin;
-
-    public function __construct()
-    {
-        $this->Patient = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateHeure(): ?\DateTimeInterface
+    public function getDateheure(): ?\DateTimeInterface
     {
-        return $this->dateHeure;
+        return $this->dateheure;
     }
 
-    public function setDateHeure(\DateTimeInterface $dateHeure): self
+    public function setDateheure(\DateTimeInterface $dateheure): self
     {
-        $this->dateHeure = $dateHeure;
+        $this->dateheure = $dateheure;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Patient[]
-     */
-    public function getPatient(): Collection
+    public function getPatient(): ?Patient
     {
-        return $this->Patient;
-    }
-
-    public function addPatient(Patient $patient): self
-    {
-        if (!$this->Patient->contains($patient)) {
-            $this->Patient[] = $patient;
-            $patient->setConsultations($this);
-        }
-
-        return $this;
-    }
-
-    public function removePatient(Patient $patient): self
-    {
-        if ($this->Patient->contains($patient)) {
-            $this->Patient->removeElement($patient);
-            // set the owning side to null (unless already changed)
-            if ($patient->getConsultations() === $this) {
-                $patient->setConsultations(null);
-            }
-        }
-
-        return $this;
+        return $this->patient;
     }
 
     public function setPatient(?Patient $patient): self
@@ -109,5 +72,4 @@ class Consultation
 
         return $this;
     }
-    
 }

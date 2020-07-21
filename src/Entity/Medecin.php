@@ -38,15 +38,16 @@ class Medecin
      */
     private $ordonnance;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Consultation", mappedBy="medecin")
-     */
-    private $consultations;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ordonnance", mappedBy="medecin")
      */
     private $ordonnances;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Consultation::class, mappedBy="medecin")
+     */
+    private $consultations;
 
     public function __construct()
     {
@@ -110,36 +111,7 @@ class Medecin
         return $this;
     }
 
-    /**
-     * @return Collection|Consultation[]
-     */
-    public function getConsultations(): Collection
-    {
-        return $this->consultations;
-    }
-
-    public function addConsultation(Consultation $consultation): self
-    {
-        if (!$this->consultations->contains($consultation)) {
-            $this->consultations[] = $consultation;
-            $consultation->setMedecin($this);
-        }
-
-        return $this;
-    }
-
-    public function removeConsultation(Consultation $consultation): self
-    {
-        if ($this->consultations->contains($consultation)) {
-            $this->consultations->removeElement($consultation);
-            // set the owning side to null (unless already changed)
-            if ($consultation->getMedecin() === $this) {
-                $consultation->setMedecin(null);
-            }
-        }
-
-        return $this;
-    }
+ 
 
     /**
      * @return Collection|Ordonnance[]
@@ -175,5 +147,36 @@ class Medecin
     public function __toString()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|Consultation[]
+     */
+    public function getConsultations(): Collection
+    {
+        return $this->consultations;
+    }
+
+    public function addConsultation(Consultation $consultation): self
+    {
+        if (!$this->consultations->contains($consultation)) {
+            $this->consultations[] = $consultation;
+            $consultation->setMedecin($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConsultation(Consultation $consultation): self
+    {
+        if ($this->consultations->contains($consultation)) {
+            $this->consultations->removeElement($consultation);
+            // set the owning side to null (unless already changed)
+            if ($consultation->getMedecin() === $this) {
+                $consultation->setMedecin(null);
+            }
+        }
+
+        return $this;
     }
 }

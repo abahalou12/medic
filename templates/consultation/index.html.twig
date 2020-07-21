@@ -9,7 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>DateHeure</th>
+                <th>Dateheure</th>
+                <th>Nom du Patient</th>
+                <th>Nom du Medecin</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +19,13 @@
         {% for consultation in consultations %}
             <tr>
                 <td>{{ consultation.id }}</td>
-                <td>{{ consultation.dateHeure ? consultation.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ consultation.dateheure ? consultation.dateheure|date('Y-m-d') : '' }}</td>
+                <td>
+                    {{consultation.patient.nom}}
+                </td>
+                <td>
+                    {{consultation.medecin.nom}}
+                </td>
                 <td>
                     <a href="{{ path('consultation_show', {'id': consultation.id}) }}">show</a>
                     <a href="{{ path('consultation_edit', {'id': consultation.id}) }}">edit</a>

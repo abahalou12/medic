@@ -12,7 +12,7 @@ class ConsultationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateHeure')
+            ->add('dateheure')
             ->add('patient')
             ->add('medecin')
         ;

@@ -19,6 +19,14 @@
                 <th>DateHeure</th>
                 <td>{{ ordonnance.dateHeure ? ordonnance.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+            <tr>
+                <th>Nom du Patient</th>
+                <td>{{ ordonnance.patient.nom }}</td>
+            </tr>
+            <tr>
+                <th>Nom du Medecin</th>
+                <td>{{ ordonnance.medecin.nom }}</td>
+            </tr>
         </tbody>
     </table>
 

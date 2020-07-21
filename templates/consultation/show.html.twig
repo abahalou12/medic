@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Consultation{% endblock %}
 
 {% block body %}
@@ -13,25 +12,23 @@
                 <td>{{ consultation.id }}</td>
             </tr>
             <tr>
-                <th>Date & Heure</th>
-                <td>{{ consultation.dateHeure ? consultation.dateHeure|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Dateheure</th>
+                <td>{{ consultation.dateheure ? consultation.dateheure|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
-                <td>{{ patient.nom }}</td>
+                <th>Nom du Patient</th>
+                <td>{{ consultation.patient.nom }}</td>
             </tr>
-            {# <tr>
-                <th>Patient</th>
-                {%for p in consultation.patient %}
-                <td>{{ p.nom }}</td>
-                {%endfor%}
-            </tr> #}
+            <tr>
+                <th>Nom du Medecin</th>
+                <td>{{ consultation.medecin.nom }}</td>
+            </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('consultation_index') }}">retour</a>
+    <a href="{{ path('consultation_index') }}">back to list</a>
 
-    <a href="{{ path('consultation_edit', {'id': consultation.id}) }}">editer</a>
+    <a href="{{ path('consultation_edit', {'id': consultation.id}) }}">edit</a>
 
     {{ include('consultation/_delete_form.html.twig') }}
 {% endblock %}
